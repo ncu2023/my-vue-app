@@ -15,6 +15,7 @@ const app = createApp(App);
 
 // 5. vue-router:將vue-router設定到vue APP內
 app.use(router.router);
+app.use(ElementPlus);
 
 app.mount('#app');
 

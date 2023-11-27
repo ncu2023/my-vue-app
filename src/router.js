@@ -5,6 +5,7 @@ import Login from './pages/Login.vue'
 import MyButtonNo1 from './components/MyButtonNo1.vue'
 import HelloWorld from './components/HelloWorld.vue'
 import User from './pages/User.vue'
+import Product from './pages/product.vue'
 
 // 3. vue-router: 定義url要跳轉的元件畫面
 const routes = [
@@ -23,6 +24,10 @@ const routes = [
     {
         path: '/user',
         component: User
+    },
+    {
+        path: '/product',
+        component: Product
     }
   ]
 

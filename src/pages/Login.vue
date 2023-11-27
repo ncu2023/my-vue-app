@@ -107,7 +107,7 @@ export default {
                     }
                     else {
                         console.log("登入成功");
-                        location.href = "/product.html?username=" + this.username; // 跳轉網頁
+                        location.href = "/product?username=" + this.username; // 跳轉網頁
                     }
                 }
             });
