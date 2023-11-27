@@ -45,7 +45,7 @@
         style="margin: 50px; z-index: 1;"
         v-model:current-page="currentPage"
         v-model:page-size="pageSize"
-        :page-sizes="[100, 200, 300, 400]"
+        :page-sizes="[3, 9, 15, 30]"
         :small="false"
         :background="true"
         :disabled="false"
@@ -109,7 +109,7 @@ export default {
     return {
       // 分頁用的變數
       currentPage: 1,
-      pageSize: 100,
+      pageSize: 3,
 
       username: '',
       toastMessage: '',
@@ -134,10 +134,17 @@ export default {
     handleSizeChange($event) {
       console.log('handleSizeChange');
       console.log($event);
+
+      // 更新商品卡片
+      this.fetchProduct();
     },
+    // 切換商品分頁
     handleCurrentChange($event) {
       console.log('handleCurrentChange');
       console.log($event);
+
+      // 更新商品卡片
+      this.fetchProduct();
     },
     uploadFile(event) {
       console.log(event.target.files);
@@ -168,6 +175,22 @@ export default {
       setTimeout(() => {
         this.isShowToast = false;
       }, 2000);
+    },
+    fetchProduct() {
+      // 打API要商品資訊
+      axios.get('http://localhost:8080/v2/product?limit=' + this.pageSize + '&offset=' 
+                + ((this.currentPage - 1) * this.pageSize) + '&sortMode=0')
+        .then((response) => {
+          // 處理API的response
+          console.log(response);
+
+          if(response.status == 200) { // API呼叫成功 
+            if(response.data.code == 0)  // 取的資料成功
+              this.data = response.data.data; // 將商品資訊存到變數內
+            else
+              this.data =[];  // 清空資料
+          }
+        });
     }
   },
   // 這個方法會網頁載入完畢後會自動被呼叫
@@ -179,19 +202,8 @@ export default {
     // 取得使用者名稱
     this.username = parameters.get('username');
 
-    // 打API要商品資訊
-    axios.get('http://localhost:8080/product')
-      .then((response) => {
-        // 處理API的response
-        console.log(response);
-
-        if(response.status == 200) { // API呼叫成功 
-          if(response.data.code == 0)  // 取的資料成功
-            this.data = response.data.data; // 將商品資訊存到變數內
-          else
-            this.data =[];  // 清空資料
-        }
-      });
+    // 更新商品卡片
+    this.fetchProduct();
   }
 }
 </script>
