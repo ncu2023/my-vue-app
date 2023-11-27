@@ -50,7 +50,7 @@
         :background="true"
         :disabled="false"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="400"
+        :total="total"
         @size-change="handleSizeChange()"
         @current-change="handleCurrentChange()"
       />  
@@ -110,6 +110,7 @@ export default {
       // 分頁用的變數
       currentPage: 1,
       pageSize: 3,
+      total: 0, // 總筆數
 
       username: '',
       toastMessage: '',
@@ -185,8 +186,10 @@ export default {
           console.log(response);
 
           if(response.status == 200) { // API呼叫成功 
-            if(response.data.code == 0)  // 取的資料成功
-              this.data = response.data.data; // 將商品資訊存到變數內
+            if(response.data.code == 0) { // 取的資料成功
+              this.data = response.data.data.products; // 將商品資訊存到變數內
+              this.total = response.data.data.total;
+            }
             else
               this.data =[];  // 清空資料
           }
