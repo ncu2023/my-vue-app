@@ -2,7 +2,7 @@
   <div class="body">
     <div class="toast" v-if="isShowToast">{{ toastMessage }}</div>
     <div class="add-btn" @click="isShowForm = true">
-      <img src="plus.svg" style="width: 100%;" />
+      <img src="/src/assets/plus.svg" style="width: 100%;" />
     </div>
     
     <div class="bg">
@@ -12,8 +12,6 @@
       <button type="text" class="submit" @click="isShowForm = true">新增商品</button>
     </div>
     
-    
-    <div>Hi</div>
     <div class="container">
       <!-- 卡片資料 -->
       <div v-for="p in data" class="nft">
@@ -40,20 +38,22 @@
           </div>
         </div>
       </div>
-      <el-pagination
+
+    </div>
+
+    <el-pagination
+        style="margin: 50px; z-index: 1;"
         v-model:current-page="currentPage"
         v-model:page-size="pageSize"
         :page-sizes="[100, 200, 300, 400]"
-      
-        layout="total, sizes, prev, pager, next"
+        :small="false"
+        :background="true"
+        :disabled="false"
+        layout="total, sizes, prev, pager, next, jumper"
         :total="400"
         @size-change="handleSizeChange()"
         @current-change="handleCurrentChange()"
-      />
-      
-    </div>
-
-    
+      />  
 
     <div class="mask" v-if="isShowForm"></div>
 
@@ -472,6 +472,10 @@ body {
   /* outline: 0;  */
   text-align: center;
   width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .submit:active {
