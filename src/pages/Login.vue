@@ -64,6 +64,7 @@
 <script>
 import axios from 'axios';
 import MyButtonNo1 from '../components/MyButtonNo1.vue';
+import { ElMessage } from 'element-plus'
 
 export default {
     data() {
@@ -100,6 +101,9 @@ export default {
                     if (response.data.code > 0) { // 登入失敗
                         console.log("登入失敗:" + response.data.message);
                         this.isShowLoginError = true;
+
+                        // 彈出登入失敗的toast
+                        ElMessage.error('登入失敗');
                     }
                     else {
                         console.log("登入成功");

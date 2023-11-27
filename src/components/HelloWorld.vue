@@ -33,7 +33,7 @@ const count = ref(0)
     in your IDE for a better DX
   </p>
   <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
-  <MyButtonNo1></MyButtonNo1>
+  <MyButtonNo1 message="test"></MyButtonNo1>
   <hr/>
 </template>
 

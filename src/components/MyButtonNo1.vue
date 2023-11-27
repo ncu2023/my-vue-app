@@ -18,7 +18,7 @@ export default {
             
             console.log(this.times);
 
-            if(this.times >= 10) {
+            if(this.times >= 1) {
                 // 通知父元件我被點擊10次
                 this.$emit('on10Times', 9999);
             }
