@@ -48,7 +48,7 @@
         </div>
 
         <div class="row">
-            <div class="col-3 d-none d-md-flex" style="flex-direction: column;">
+            <div class="col-3 d-none d-md-flex flex-column">
                 <!-- <button type="button" class="btn btn-primary">Primary</button>
                 <button type="button" class="btn btn-success">Success</button> -->
                 <img src="/src/assets/japan2.jpg" class="card-img-top p-5"
@@ -65,6 +65,11 @@
                 <p><a class="link-opacity-75-hover" href="#">功能表選項8</a></p>
                 <p><a class="link-opacity-75-hover" href="#">功能表選項9</a></p>
                 <p><a class="link-opacity-75-hover" href="#">功能表選項10</a></p>
+
+                <div class="d-flex flex-row justify-content-center align-items-center mt-5">
+                    <button type="button" class="btn btn-primary me-3" style="height: 40px">Primary</button>
+                    <button type="button" class="btn btn-success justify-content-center align-items-center" style="height: 40px">Success</button>
+                </div>
             </div>
 
             <div class="col-12 col-md-9">
@@ -231,14 +236,13 @@
            <img src="/src/assets/vue.svg" />
         </div>
 
-        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+        <div class="d-md-none offcanvas offcanvas-start"  data-bs-backdrop="false" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
             aria-labelledby="offcanvasWithBothOptionsLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">功能表</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                
                     <img src="/src/assets/japan2.jpg" class="card-img-top p-0 mb-5"
                         style="width: 100%; height: 150px; object-fit: cover;" alt="...">
                     
@@ -255,7 +259,6 @@
 
                     <button type="button" class="btn btn-primary m-3">Primary</button>
                     <button type="button" class="btn btn-success">Success</button>
-                
             </div>
         </div>
 
