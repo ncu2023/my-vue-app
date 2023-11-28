@@ -59,7 +59,9 @@ button:focus-visible {
 }
 
 #app {
+  width: 100%;
   max-width: 100%;
+  overflow: hidden;
 
   /* padding: 2rem; */
   text-align: center;
