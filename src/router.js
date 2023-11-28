@@ -6,6 +6,7 @@ import MyButtonNo1 from './components/MyButtonNo1.vue'
 import HelloWorld from './components/HelloWorld.vue'
 import User from './pages/User.vue'
 import Product from './pages/product.vue'
+import Profile from './pages/BootstrapProfile.vue'
 
 // 3. vue-router: 定義url要跳轉的元件畫面
 const routes = [
@@ -28,7 +29,11 @@ const routes = [
     {
         path: '/product',
         component: Product
-    }
+    },
+    {
+        path: '/profile',
+        component: Profile
+    },
   ]
 
 // 4. vue-router:建立vue-router物件

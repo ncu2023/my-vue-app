@@ -4,6 +4,11 @@ import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
+// 引入Bootstrap
+// Import all of Bootstrap's JS
+import * as bootstrap from 'bootstrap'
+import "bootstrap/scss/bootstrap.scss";
+
 import './style.css'
 import App from './App.vue'
 import router from './router'
@@ -16,6 +21,7 @@ const app = createApp(App);
 // 5. vue-router:將vue-router設定到vue APP內
 app.use(router.router);
 app.use(ElementPlus);
+app.use(bootstrap);
 
 app.mount('#app');
 
