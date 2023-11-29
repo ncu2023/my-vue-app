@@ -2,7 +2,7 @@
 <template>
     <div class="container-demo-vue">
         <h1 class="title">black FRIDAY</h1>
-        <Countdown deadline="2023-12-20 14:00:00" 
+        <Countdown :deadline="deadline" 
             countdownSize="6rem" labelSize="2.4em"
             mainColor="#ffffff" secondFlipColor="#ffff00"
             mainFlipBackgroundColor="#777700" secondFlipBackgroundColor="#007777"
@@ -13,9 +13,17 @@
 
 <script>
 import {Countdown} from 'vue3-flip-countdown'
+import axios from 'axios';
+import { ElMessage } from 'element-plus'
+
 export default {
     components: {
         Countdown
+    },
+    data() {
+        return {
+            deadline: "1970-01-01 00:00:00",
+        }
     },
     methods: {
         onTimeElapsed() {
@@ -24,6 +32,15 @@ export default {
     },
     mounted() {
         // 打API
+        axios.get('http://localhost:8080/v1/countdown')
+            .then((response) => {
+                // 打API成功
+                if(response.status == 200 && response.data.code == 0) {
+                    this.deadline = response.data.data;
+                } else {
+                    ElMessage.error('取得deadline失敗');
+                }
+            });
     }
 }
 </script>
