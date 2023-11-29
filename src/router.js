@@ -7,6 +7,7 @@ import HelloWorld from './components/HelloWorld.vue'
 import User from './pages/User.vue'
 import Product from './pages/product.vue'
 import Profile from './pages/BootstrapProfile.vue'
+import DemoVue from './pages/DemoVue.vue'
 
 // 3. vue-router: 定義url要跳轉的元件畫面
 const routes = [
@@ -33,6 +34,10 @@ const routes = [
     {
         path: '/profile',
         component: Profile
+    },
+    {
+        path: '/demo',
+        component: DemoVue
     },
   ]
 
