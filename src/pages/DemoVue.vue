@@ -1,3 +1,4 @@
+<!-- Vue Flip Countdown元件: https://github.com/coskuncay/vue3-flip-countdown?ref=madewithvuejs.com -->
 <template>
     <div class="container-demo-vue">
         <Countdown deadline="2023-11-29 9:56:30" @timeElapsed="onTimeElapsed()" />
