@@ -54,7 +54,6 @@
               <!-- <input type="submit" value="登入" @click="login()"> -->
               <MyButtonNo1 message="登入" @on10Times="login($event)" />
 
-              <h3>使用第三方登入</h3>
               <!-- gogole 登入 -->
               <div id="signinDiv"></div>
               
@@ -341,7 +340,10 @@ input[type="submit"]:active {
   margin-top: -10px;
 }
 
-.signin {
-  height: 550px;
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 </style>
