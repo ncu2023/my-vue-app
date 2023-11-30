@@ -50,8 +50,14 @@
             <div class="links"> <a href="#">忘記密碼</a> <a href="#">註冊</a>
             </div>
             <div class="inputBox">
+              
               <!-- <input type="submit" value="登入" @click="login()"> -->
               <MyButtonNo1 message="登入" @on10Times="login($event)" />
+
+              <h3>使用第三方登入</h3>
+              <!-- gogole 登入 -->
+              <div id="signinDiv"></div>
+              
             </div>
           </div>
         </div>
@@ -67,53 +73,79 @@ import MyButtonNo1 from '../components/MyButtonNo1.vue';
 import { ElMessage } from 'element-plus'
 
 export default {
-    data() {
-        return {
-            count: 0,
-            message: "Hello Vue!",
-            test: "Aaron",
-            username: "",
-            password: "",
-            isShowLoginError: false,
-        };
+  data() {
+    return {
+      count: 0,
+      message: "Hello Vue!",
+      test: "Aaron",
+      username: "",
+      password: "",
+      isShowLoginError: false,
+    };
+  },
+  // Vue要使用的方法
+  methods: {
+    testClick() {
+      // alert('Hi Vue');
+      this.test = "Andy";
     },
-    // Vue要使用的方法
-    methods: {
-        testClick() {
-            // alert('Hi Vue');
-            this.test = "Andy";
-        },
-        // 登入用的方法
-        login($event) {
-            console.log('子元件傳來的資料: ' + $event);
-            
-            // alert('Login');
-            console.log("Login"); // System.out.println()
-            console.log("username=" + this.username);
-            console.log("password=" + this.password);
-            // 串接登入API
-            axios.get("http://localhost:8080/login?username=" + this.username + "&password=" + this.password)
-                .then((response) => {
-                console.log(response);
-                // 處理API的回應
-                if (response.status == 200) {
-                    console.log("呼叫API成功");
-                    if (response.data.code > 0) { // 登入失敗
-                        console.log("登入失敗:" + response.data.message);
-                        this.isShowLoginError = true;
+    // 登入用的方法
+    login($event) {
+      console.log('子元件傳來的資料: ' + $event);
 
-                        // 彈出登入失敗的toast
-                        ElMessage.error('登入失敗');
-                    }
-                    else {
-                        console.log("登入成功");
-                        location.href = "/product?username=" + this.username; // 跳轉網頁
-                    }
-                }
-            });
+      // alert('Login');
+      console.log("Login"); // System.out.println()
+      console.log("username=" + this.username);
+      console.log("password=" + this.password);
+      // 串接登入API
+      axios.get("http://localhost:8080/login?username=" + this.username + "&password=" + this.password)
+        .then((response) => {
+          console.log(response);
+          // 處理API的回應
+          if (response.status == 200) {
+            console.log("呼叫API成功");
+            if (response.data.code > 0) { // 登入失敗
+              console.log("登入失敗:" + response.data.message);
+              this.isShowLoginError = true;
+
+              // 彈出登入失敗的toast
+              ElMessage.error('登入失敗');
+            }
+            else {
+              console.log("登入成功");
+              location.href = "/product?username=" + this.username; // 跳轉網頁
+            }
+          }
+        });
+    }
+  },
+  components: { MyButtonNo1 },
+  mounted() {
+      // 官方文件: https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid?hl=en
+      google.accounts.id.initialize({
+        client_id: '108299712597-8tmajmgmcpcc8d027l0a6vj1o3reumss.apps.googleusercontent.com',
+        callback: (response) => {
+          console.log(response);
+
+          // 幫使用者自動註冊API
+
+          // 跳轉商品頁
+          location.href = "/product?username=" + this.username; // 跳轉網頁
         }
-    },
-    components: { MyButtonNo1 }
+      });
+      google.accounts.id.prompt();
+    
+    google.accounts.id.renderButton(document.getElementById("signinDiv"), {
+      theme: 'outline',
+      size: 'large',
+      click_listener: onClickHandler
+    });
+
+    function onClickHandler(){
+      console.log("Sign in with Google button clicked...")
+    }
+    
+  }
 }
 </script>
 
@@ -307,4 +339,9 @@ input[type="submit"]:active {
   display: flex;
   justify-content: center;
   margin-top: -10px;
-}</style>
+}
+
+.signin {
+  height: 550px;
+}
+</style>
