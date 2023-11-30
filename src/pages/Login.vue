@@ -70,6 +70,7 @@
 import axios from 'axios';
 import MyButtonNo1 from '../components/MyButtonNo1.vue';
 import { ElMessage } from 'element-plus'
+import { jwtDecode } from "jwt-decode"
 
 export default {
   data() {
@@ -124,12 +125,28 @@ export default {
       google.accounts.id.initialize({
         client_id: '108299712597-8tmajmgmcpcc8d027l0a6vj1o3reumss.apps.googleusercontent.com',
         callback: (response) => {
-          console.log(response);
+          console.log(response.credential);
+
+          // 解碼憑證
+          const decoded = jwtDecode(response.credential);
+
+          const jwtStr = JSON.stringify(decoded, null, 4);
+          console.log(jwtStr);
 
           // 幫使用者自動註冊API
-
-          // 跳轉商品頁
-          location.href = "/product?username=" + this.username; // 跳轉網頁
+          axios.post('http://localhost:8080/v1/account', {
+            name: decoded.name,
+            code: decoded.sub,
+            email: decoded.email,
+            phone: '',
+          }).then((response) => {
+            if(response.status == 200 && response.data.code == 0)  { // 登入成功
+              // 跳轉商品頁
+              location.href = "/product?username=" + this.username; // 跳轉網頁
+            } else {
+              ElMessage.error('登入失敗');
+            }
+          });
         }
       });
       google.accounts.id.prompt();
