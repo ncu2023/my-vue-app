@@ -32,7 +32,7 @@ export default {
 .btn {
     color: yellow;
     background-color: black;
-    width: 200px;
+    width: 250px;
     height: 50px;
 }
 

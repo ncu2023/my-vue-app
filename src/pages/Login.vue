@@ -154,6 +154,7 @@ export default {
     google.accounts.id.renderButton(document.getElementById("signinDiv"), {
       theme: 'outline',
       size: 'large',
+      width: '250px',
       click_listener: onClickHandler
     });
 
@@ -362,5 +363,6 @@ input[type="submit"]:active {
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  width: 500px;
 }
 </style>

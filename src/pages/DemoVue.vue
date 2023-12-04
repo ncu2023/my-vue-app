@@ -37,6 +37,7 @@ export default {
                 // 打API成功
                 if(response.status == 200 && response.data.code == 0) {
                     this.deadline = response.data.data;
+                    console.log(this.deadline);
                 } else {
                     ElMessage.error('取得deadline失敗');
                 }

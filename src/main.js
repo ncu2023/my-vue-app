@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 
+
 // 引入element ui
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
@@ -12,9 +13,11 @@ import "bootstrap/scss/bootstrap.scss";
 import './style.css'
 import App from './App.vue'
 import router from './router'
+import axios from 'axios'
 
 // demo import
 // import testDemo from './demo'
+axios.defaults.withCredentials = true;  // 為了將cookie傳給後端
 
 const app = createApp(App);
 
