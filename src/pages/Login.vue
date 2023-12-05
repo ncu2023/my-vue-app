@@ -44,7 +44,7 @@
             </div>
             <div class="inputBox">
               <!-- 綁定password變數給input -->
-              <input v-model="password" type="password" name="code" required> <i>密碼</i>
+              <input v-model="password" type="text" name="code" required> <i>密碼</i>
             </div>
             <div v-if="isShowLoginError" class="login-failed">登入失敗</div>
             <div class="links"> <a href="#">忘記密碼</a> <a href="#">註冊</a>

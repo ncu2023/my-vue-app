@@ -9,6 +9,7 @@ import Product from './pages/product.vue'
 import Profile from './pages/BootstrapProfile.vue'
 import DemoVue from './pages/DemoVue.vue'
 import Backstage from './pages/Backstage.vue'
+import ShopCart from './pages/ShopCart.vue'
 
 // 3. vue-router: 定義url要跳轉的元件畫面
 const routes = [
@@ -43,6 +44,10 @@ const routes = [
     {
         path: '/backstage',
         component: Backstage
+    },
+    {
+        path: '/shopcart',
+        component: ShopCart
     },
   ]
 
