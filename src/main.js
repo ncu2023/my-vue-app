@@ -18,6 +18,7 @@ import axios from 'axios'
 // demo import
 // import testDemo from './demo'
 axios.defaults.withCredentials = true;  // 為了將cookie傳給後端
+axios.defaults.baseURL = 'http://localhost:8080'
 
 const app = createApp(App);
 

@@ -15,7 +15,7 @@
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                         <div>
                                             <p class="mb-1">購物車</p>
-                                            <p class="mb-0">You have 4 items in your cart</p>
+                                            <p class="mb-0">You have {{shopCart.length}} items in your cart</p>
                                         </div>
                                         <div>
                                             <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"
@@ -23,121 +23,30 @@
                                         </div>
                                     </div>
 
-                                    <div class="card mb-3">
+                                    <div v-for="item, index in shopCart" class="card mb-3">
                                         <div class="card-body">
                                             <div style="display: flex; justify-content: center; align-items: center; position: absolute; top: -16px; right: -16px; background-color: red; 
-                                                width:32px; height: 32px; border-radius: 32px; color: white;">X</div>
+                                                width:32px; height: 32px; border-radius: 32px; color: white; cursor: pointer;" @click="onDelete(item.id, index)">X</div>
                                             <div class="d-flex justify-content-between">
                                                 <div class="d-flex flex-row align-items-center">
                                                     <div>
-                                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                                                        <img :src="item.photoUrl"
                                                             class="img-fluid rounded-3" alt="Shopping item"
                                                             style="width: 65px;">
                                                     </div>
                                                     <div class="ms-3">
-                                                        <h5>Iphone 11 pro</h5>
-                                                        <p class="small mb-0">256GB, Navy Blue</p>
+                                                        <h5>{{ item.title }}</h5>
+                                                        <p class="small mb-0">{{ item.description }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="d-flex flex-row align-items-center">
                                                     <div style="width: 50px;">
-                                                        <input class="fw-normal mb-0" value="2" style="width: 100%" />
+                                                        <input class="fw-normal mb-0" v-model="item.quantity" style="width: 100%" @keyup="onKeyUp($event, index)" />
                                                     </div>
                                                     <div style="width: 80px;">
-                                                        <h5 class="mb-0">$900</h5>
+                                                        <h5 class="mb-0">${{ item.price * item.quantity }}</h5>
                                                     </div>
-                                                    <a href="#!" style="color: #cecece;"><i
-                                                            class="fas fa-trash-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div style="display: flex; justify-content: center; align-items: center; position: absolute; top: -16px; right: -16px; background-color: red; 
-                                                width:32px; height: 32px; border-radius: 32px; color: white;">X</div>
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div>
-                                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img2.webp"
-                                                            class="img-fluid rounded-3" alt="Shopping item"
-                                                            style="width: 65px;">
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <h5>Samsung galaxy Note 10 </h5>
-                                                        <p class="small mb-0">256GB, Navy Blue</p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 50px;">
-                                                        <input class="fw-normal mb-0" value="2" style="width: 100%" />
-                                                    </div>
-                                                    <div style="width: 80px;">
-                                                        <h5 class="mb-0">$900</h5>
-                                                    </div>
-                                                    <a href="#!" style="color: #cecece;"><i
-                                                            class="fas fa-trash-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div style="display: flex; justify-content: center; align-items: center; position: absolute; top: -16px; right: -16px; background-color: red; 
-                                                width:32px; height: 32px; border-radius: 32px; color: white;">X</div>
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div>
-                                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img3.webp"
-                                                            class="img-fluid rounded-3" alt="Shopping item"
-                                                            style="width: 65px;">
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <h5>Canon EOS M50</h5>
-                                                        <p class="small mb-0">Onyx Black</p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 50px;">
-                                                        <input class="fw-normal mb-0" value="1" style="width: 100%" />
-                                                    </div>
-                                                    <div style="width: 80px;">
-                                                        <h5 class="mb-0">$1199</h5>
-                                                    </div>
-                                                    <a href="#!" style="color: #cecece;"><i
-                                                            class="fas fa-trash-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card mb-3 mb-lg-0">
-                                        <div class="card-body">
-                                            <div style="display: flex; justify-content: center; align-items: center; position: absolute; top: -16px; right: -16px; background-color: red; 
-                                                width:32px; height: 32px; border-radius: 32px; color: white;">X</div>
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div>
-                                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img4.webp"
-                                                            class="img-fluid rounded-3" alt="Shopping item"
-                                                            style="width: 65px;">
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <h5>MacBook Pro</h5>
-                                                        <p class="small mb-0">1TB, Graphite</p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 50px;">
-                                                        <input class="fw-normal mb-0" value="1" style="width: 100%" />
-                                                    </div>
-                                                    <div style="width: 80px;">
-                                                        <h5 class="mb-0">$1799</h5>
-                                                    </div>
-                                                    <a href="#!" style="color: #cecece;"><i
-                                                            class="fas fa-trash-alt"></i></a>
+                                                    <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -241,6 +150,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     data() {
         return {
@@ -249,6 +160,10 @@ export default {
 
             cardName: '',
             cardNo: '',
+
+            shopCart: [],
+
+            userid: -1,
         }
     },
     watch: {
@@ -257,7 +172,7 @@ export default {
         },
         cardNo(newVal, oldVal) {
             if(newVal.length >= 16) this.isShowCardNoError = false;
-        }
+        },
     },
     methods: {
         onCheckout() {
@@ -269,7 +184,51 @@ export default {
                 this.isShowCardNoError = true;
             }
         
+        },
+        onDelete(id, index) {
+            axios.delete('/api/v1/shopcart/' + id)
+                .then((response) => {
+                    if(response.status == 200) {
+                        this.shopCart.splice(index, 1);
+                    }
+                })
+
+        },
+        onKeyUp($event, index) {
+            console.log('' + index + ' pressed: ' + this.shopCart[index].quantity);
+            axios.put('/api/v1/shopcart', {
+                id: this.shopCart[index].id,
+                prdId: this.shopCart[index].prdId,
+                quantity: this.shopCart[index].quantity,
+                userId: this.shopCart[index].userId,
+            })
+            .then((response) => {
+                if(response.status == 200 && response.data.code == 0) {
+                    console.log('更新成功');
+                } else {
+                    console.log('更新失敗');
+                }
+            })
         }
+    },
+    mounted() {
+        // 取得網址列參數
+        const queryString = window.location.search;
+        // 解析參數列
+        const parameters = new URLSearchParams(queryString);
+        // 取得使用者名稱
+        this.userid = parameters.get('userid');
+        console.log(this.userid);
+        
+        axios.get('/api/v1/shopcart?userId=' + this.userid)
+            .then((response) => {
+                if(response.status == 200) {
+                    console.log(response);
+
+                    // 將api的購物車商品存到變數內
+                    if(response.data.code == 0) this.shopCart = response.data.data;
+                }
+            })
     }
 }
 </script>
