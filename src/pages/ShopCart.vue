@@ -5,7 +5,6 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body p-4">
-
                             <div class="row">
 
                                 <div class="col-lg-7">
@@ -26,6 +25,8 @@
 
                                     <div class="card mb-3">
                                         <div class="card-body">
+                                            <div style="display: flex; justify-content: center; align-items: center; position: absolute; top: -16px; right: -16px; background-color: red; 
+                                                width:32px; height: 32px; border-radius: 32px; color: white;">X</div>
                                             <div class="d-flex justify-content-between">
                                                 <div class="d-flex flex-row align-items-center">
                                                     <div>
@@ -40,7 +41,7 @@
                                                 </div>
                                                 <div class="d-flex flex-row align-items-center">
                                                     <div style="width: 50px;">
-                                                        <h5 class="fw-normal mb-0">2</h5>
+                                                        <input class="fw-normal mb-0" value="2" style="width: 100%" />
                                                     </div>
                                                     <div style="width: 80px;">
                                                         <h5 class="mb-0">$900</h5>
@@ -54,6 +55,8 @@
 
                                     <div class="card mb-3">
                                         <div class="card-body">
+                                            <div style="display: flex; justify-content: center; align-items: center; position: absolute; top: -16px; right: -16px; background-color: red; 
+                                                width:32px; height: 32px; border-radius: 32px; color: white;">X</div>
                                             <div class="d-flex justify-content-between">
                                                 <div class="d-flex flex-row align-items-center">
                                                     <div>
@@ -68,7 +71,7 @@
                                                 </div>
                                                 <div class="d-flex flex-row align-items-center">
                                                     <div style="width: 50px;">
-                                                        <h5 class="fw-normal mb-0">2</h5>
+                                                        <input class="fw-normal mb-0" value="2" style="width: 100%" />
                                                     </div>
                                                     <div style="width: 80px;">
                                                         <h5 class="mb-0">$900</h5>
@@ -82,6 +85,8 @@
 
                                     <div class="card mb-3">
                                         <div class="card-body">
+                                            <div style="display: flex; justify-content: center; align-items: center; position: absolute; top: -16px; right: -16px; background-color: red; 
+                                                width:32px; height: 32px; border-radius: 32px; color: white;">X</div>
                                             <div class="d-flex justify-content-between">
                                                 <div class="d-flex flex-row align-items-center">
                                                     <div>
@@ -96,7 +101,7 @@
                                                 </div>
                                                 <div class="d-flex flex-row align-items-center">
                                                     <div style="width: 50px;">
-                                                        <h5 class="fw-normal mb-0">1</h5>
+                                                        <input class="fw-normal mb-0" value="1" style="width: 100%" />
                                                     </div>
                                                     <div style="width: 80px;">
                                                         <h5 class="mb-0">$1199</h5>
@@ -110,6 +115,8 @@
 
                                     <div class="card mb-3 mb-lg-0">
                                         <div class="card-body">
+                                            <div style="display: flex; justify-content: center; align-items: center; position: absolute; top: -16px; right: -16px; background-color: red; 
+                                                width:32px; height: 32px; border-radius: 32px; color: white;">X</div>
                                             <div class="d-flex justify-content-between">
                                                 <div class="d-flex flex-row align-items-center">
                                                     <div>
@@ -124,7 +131,7 @@
                                                 </div>
                                                 <div class="d-flex flex-row align-items-center">
                                                     <div style="width: 50px;">
-                                                        <h5 class="fw-normal mb-0">1</h5>
+                                                        <input class="fw-normal mb-0" value="1" style="width: 100%" />
                                                     </div>
                                                     <div style="width: 80px;">
                                                         <h5 class="mb-0">$1799</h5>
@@ -160,15 +167,17 @@
                                             <form class="mt-4">
                                                 <div class="form-outline form-white mb-4">
                                                     <input type="text" id="typeName" class="form-control form-control-lg"
-                                                        siez="17" placeholder="Cardholder's Name" />
+                                                        siez="17" placeholder="Cardholder's Name"  v-model="cardName" />
                                                     <label class="form-label" for="typeName">Cardholder's Name</label>
+                                                    <div v-if="isShowNameError" class="error-text">姓名不可為空</div>
                                                 </div>
 
                                                 <div class="form-outline form-white mb-4">
                                                     <input type="text" id="typeText2" class="form-control form-control-lg"
                                                         siez="17" placeholder="1234 5678 9012 3457" minlength="19"
-                                                        maxlength="19" />
+                                                        maxlength="19" v-model="cardNo" />
                                                     <label class="form-label" for="typeText">Card Number</label>
+                                                    <div v-if="isShowCardNoError" class="error-text">卡號不可小於16個數字</div>
                                                 </div>
 
                                                 <div class="row mb-4">
@@ -212,7 +221,7 @@
 
                                             <button type="button" class="btn btn-info btn-block btn-lg">
                                                 <div class="d-flex justify-content-between">
-                                                    <span>前往結帳<i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                    <span @click.prevent="onCheckout()">前往結帳<i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                                 </div>
                                             </button>
 
@@ -233,7 +242,35 @@
 
 <script>
 export default {
+    data() {
+        return {
+            isShowNameError: false,
+            isShowCardNoError: false,
 
+            cardName: '',
+            cardNo: '',
+        }
+    },
+    watch: {
+        cardName(newVal, oldVal) {
+            if(newVal.length > 0) this.isShowNameError = false;
+        },
+        cardNo(newVal, oldVal) {
+            if(newVal.length >= 16) this.isShowCardNoError = false;
+        }
+    },
+    methods: {
+        onCheckout() {
+            if(this.cardName.length == 0) {
+                this.isShowNameError = true;
+            }
+
+            if(this.cardNo.length < 16) {
+                this.isShowCardNoError = true;
+            }
+        
+        }
+    }
 }
 </script>
 
@@ -242,5 +279,11 @@ export default {
     .h-custom {
         height: 100% !important;
     }
+}
+
+.error-text {
+    font-size: 16px;
+    color: red;
+    text-shadow: 2px 2px 2px 2px #000;
 }
 </style>
