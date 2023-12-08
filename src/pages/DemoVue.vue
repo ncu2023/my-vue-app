@@ -32,7 +32,7 @@ export default {
     },
     mounted() {
         // 打API
-        axios.get('http://localhost:8080/v1/countdown')
+        axios.get('/v1/countdown')
             .then((response) => {
                 // 打API成功
                 if(response.status == 200 && response.data.code == 0) {

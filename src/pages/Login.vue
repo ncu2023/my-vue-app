@@ -98,7 +98,7 @@ export default {
       console.log("username=" + this.username);
       console.log("password=" + this.password);
       // 串接登入API
-      axios.get("http://localhost:8080/login?username=" + this.username + "&password=" + this.password)
+      axios.get("/login?username=" + this.username + "&password=" + this.password)
         .then((response) => {
           console.log(response);
           // 處理API的回應
@@ -134,7 +134,7 @@ export default {
           console.log(jwtStr);
 
           // 幫使用者自動註冊API
-          axios.post('http://localhost:8080/v1/account', {
+          axios.post('/v1/account', {
             name: decoded.name,
             code: decoded.sub,
             email: decoded.email,

@@ -153,7 +153,7 @@ export default {
     },
     // 送出要新增的商品資料
     onSend() {
-      axios.post('http://localhost:8080/product', this.newProduct)
+      axios.post('/product', this.newProduct)
         .then((response) => {
           // 打API成功
           if(response.status == 200 && response.data.code == 0) {
@@ -179,7 +179,7 @@ export default {
     },
     fetchProduct() {
       // 打API要商品資訊
-      axios.get('http://localhost:8080/v2/product?limit=' + this.pageSize + '&offset=' 
+      axios.get('/v2/product?limit=' + this.pageSize + '&offset=' 
                 + ((this.currentPage - 1) * this.pageSize) + '&sortMode=0')
         .then((response) => {
           // 處理API的response

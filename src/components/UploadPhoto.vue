@@ -73,7 +73,7 @@ export default {
             }
 
             // 呼叫API
-            axios.post('http://localhost:8080/file', formData, {}, header)
+            axios.post('/file', formData, {}, header)
                 .then((response) => {
                     console.log(response);
                 });

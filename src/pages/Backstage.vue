@@ -31,7 +31,7 @@ export default {
                 return;
             }
             console.log(this.value4);
-            axios.put('http://localhost:8080/v1/countdown', { countdown: this.value4 })
+            axios.put('/v1/countdown', { countdown: this.value4 })
                 .then((response) => {
                     // 打API成功
                     if (response.status == 200 && response.data.code == 0) {
